@@ -9,4 +9,6 @@ require("sego.plug-settings.treesitter")
 require("sego.plug-settings.nvim-tree")
 require("sego.plug-settings.comment")
 require("sego.plug-settings.bufferline")
+require("sego.plug-settings.gitsigns")
+require("sego.plug-settings.toggleterm")
 

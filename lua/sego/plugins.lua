@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
 	"windwp/nvim-autopairs",
   }
 
-  use 'nvim-tree/nvim-web-devicons'
+  use { "nvim-tree/nvim-web-devicons" }
 
   -- ===========================================
   -- color theme
@@ -80,4 +80,12 @@ return require('packer').startup(function(use)
 
   -- Bufferline
   use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'kyazdani42/nvim-web-devicons'}
+  
+  -- Gitsigns
+  use { "lewis6991/gitsigns.nvim" }
+
+  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+      require("toggleterm").setup()
+    end
+  }
 end)
