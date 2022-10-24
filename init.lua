@@ -1,0 +1,10 @@
+require("sego.plugins")
+require("sego.set")
+require("sego.keymaps")
+require("sego.lsp")
+require("sego.plug-settings.cmp")
+require("sego.plug-settings.autopairs")
+require("sego.plug-settings.lualine")
+require("sego.plug-settings.treesitter")
+require("sego.plug-settings.nvim-tree")
+
