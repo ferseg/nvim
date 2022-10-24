@@ -7,4 +7,6 @@ require("sego.plug-settings.autopairs")
 require("sego.plug-settings.lualine")
 require("sego.plug-settings.treesitter")
 require("sego.plug-settings.nvim-tree")
+require("sego.plug-settings.comment")
+require("sego.plug-settings.bufferline")
 

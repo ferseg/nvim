@@ -18,6 +18,8 @@ return require('packer').startup(function(use)
 	"windwp/nvim-autopairs",
   }
 
+  use 'nvim-tree/nvim-web-devicons'
+
   -- ===========================================
   -- color theme
   use { 'joshdick/onedark.vim' }
@@ -67,4 +69,15 @@ return require('packer').startup(function(use)
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
+  -- ===========================================
+  -- Comment
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  }
+
+  -- Bufferline
+  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'kyazdani42/nvim-web-devicons'}
 end)

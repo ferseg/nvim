@@ -24,8 +24,9 @@ vim.g.maplocalleader = " "
 nnoremap('<C-s>', ":w<CR>")
 
 -- Navigate between tabs (TODO)
-nnoremap('<TAB>', ":tabnext<CR>")
-nnoremap('<S-TAB>', ":tabprevious<CR>")
+nnoremap('<TAB>', ":bnext<CR>")
+nnoremap('<S-TAB>', ":bprevious<CR>")
+nnoremap('<leader>x', ":bdelete<CR>")
 
 -- Line movements
 nnoremap('<C-S-Up>', ":m -2<CR>")
@@ -40,9 +41,11 @@ nnoremap("<leader>ff", builtin.find_files)
 nnoremap("<leader>fw", builtin.live_grep)
 nnoremap("<leader>fb", builtin.buffers)
 nnoremap("<leader>fh", builtin.help_tags)
+nnoremap("<leader>th", builtin.colorscheme)
+nnoremap("<leader>tk", builtin.keymaps)
+nnoremap("<leader>gst", builtin.git_status)
 
 
 -- Nvimtree
 nnoremap("<leader>e", ":NvimTreeToggle<CR>")
-nnoremap("<leader>ef", ":NvimTreeFocus<CR>")
 inoremap("<C-e>", ":NvimTreeToggle<CR>")
