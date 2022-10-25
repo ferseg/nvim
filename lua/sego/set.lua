@@ -13,8 +13,9 @@ vim.opt.smartindent=true
 vim.opt.hlsearch=true
 vim.opt.scrolloff=8
 
+vim.opt.termguicolors = true
 vim.opt.background='dark'
-vim.cmd('colorscheme onedark')
+vim.cmd('colorscheme nightfly')
 
 vim.opt.cursorline = true
 

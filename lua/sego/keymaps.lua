@@ -53,5 +53,5 @@ inoremap("<C-e>", ":NvimTreeToggle<CR>")
 
 -- Gitsigns
 nnoremap("<leader>gb", ":Gitsigns toggle_current_line_blame<CR>")
-local gs = package.loaded.gitsigns
-nnoremap("<leader>hd", gs.diffthis)
+-- local gs = package.loaded.gitsigns
+

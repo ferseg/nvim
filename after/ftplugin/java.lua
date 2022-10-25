@@ -7,21 +7,8 @@ end
 vim.opt_local.tabstop = 4
 vim.opt_local.shiftwidth = 4
 
---local utils = require "core.utils"
-
---  client.server_capabilities.documentFormattingProvider = false
---  client.server_capabilities.documentRangeFormattingProvider = false
-
---  utils.load_mappings("lspconfig", { buffer = bufnr })
-
---  if client.server_capabilities.signatureHelpProvider then
---    require("nvchad_ui.signature").setup(client)
---  end
---end
-
---local nvim_cmp = require("cmp_nvim_lsp")
-local on_attach = require("sego.lsp.handlers").on_attach-- function(client, bufnr)
-local capabilities = require("sego.lsp.handlers").capabilities --nvim_cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local on_attach = require("sego.lsp.handlers").on_attach
+local capabilities = require("sego.lsp.handlers").capabilities
 
 -- Data directory - change it to your liking
 local HOME = os.getenv "HOME"
@@ -31,7 +18,7 @@ local JDTLS_LOCATION = HOME .. "/.local/share/nvim/mason/packages/jdtls"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = WORKSPACE_PATH .. project_name
 
-local root_markers = { ".git", "mvnw", }-- "gradlew", "pom.xml", "build.gradle" }
+local root_markers = { ".git", "mvnw", "gradlew", } 
 local root_dir = require("jdtls.setup").find_root(root_markers)
 if root_dir == "" then
   return
@@ -55,7 +42,6 @@ local config = {
       "--add-opens",
       "java.base/java.lang=ALL-UNNAMED",
       "-javaagent:" .. JDTLS_LOCATION .. "/lombok.jar",
-      "-Xbootclasspath/a:" .. JDTLS_LOCATION .. "/lombok.jar",
       "-jar", JDTLS_LOCATION .. "/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
       "-configuration", JDTLS_LOCATION .. "/config_mac",
       "-data", workspace_dir,
@@ -70,6 +56,7 @@ local config = {
     -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
     -- for a list of options
   settings = {
+    extendedClientCapabilities = extendedClientCapabilities,
     java = {
       eclipse = {
         downloadSources = true,
@@ -118,7 +105,6 @@ local config = {
       },
     },
     contentProvider = { preferred = "fernflower" },
-    extendedClientCapabilities = extendedClientCapabilities,
     sources = {
       organizeImports = {
         starThreshold = 3,

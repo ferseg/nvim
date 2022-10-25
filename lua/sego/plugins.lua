@@ -24,7 +24,7 @@ return require('packer').startup(function(use)
   -- color theme
   use { 'joshdick/onedark.vim' }
   use { 'altercation/vim-colors-solarized' }
-
+  use { 'bluz71/vim-nightfly-guicolors' }
 
   -- ===========================================
   -- CMP
