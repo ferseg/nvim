@@ -6,6 +6,7 @@ end
 
 vim.opt_local.tabstop = 4
 vim.opt_local.shiftwidth = 4
+vim.opt_local.softtabstop = 4
 
 local on_attach = require("sego.lsp.handlers").on_attach
 local capabilities = require("sego.lsp.handlers").capabilities
@@ -18,11 +19,37 @@ local JDTLS_LOCATION = HOME .. "/.local/share/nvim/mason/packages/jdtls"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = WORKSPACE_PATH .. project_name
 
-local root_markers = { ".git", "mvnw", "gradlew", } 
+local root_markers = { ".git", "mvnw", "gradlew",}
 local root_dir = require("jdtls.setup").find_root(root_markers)
 if root_dir == "" then
   return
 end
+
+local bundles = {}
+
+local DEBUG_ENABLED = true
+
+if DEBUG_ENABLED then
+  vim.list_extend(bundles,
+    vim.split(
+      vim.fn.glob(
+        HOME .. "/java-dap/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+      ),
+      "\n"
+    )
+  )
+
+  vim.list_extend(bundles,
+    vim.split(
+      vim.fn.glob(
+        HOME .. "/java-dap/vscode-java-test/server/*.jar"
+      ),
+      "\n"
+    )
+  )
+end
+
+
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
@@ -48,7 +75,14 @@ local config = {
   },
   autostart=true,
   filetypes={"java"},
-  on_attach = on_attach,
+  on_attach = function (client, bufnr)
+    on_attach(client, bufnr)
+    if DEBUG_ENABLED then
+      jdtls.setup_dap({ hotcodereplace = 'auto' })
+      require("jdtls.dap").setup_dap_main_class_configs()
+    end
+    -- vim.lsp.codelens.refresh()
+  end,
   capabilities = capabilities,
   root_dir = root_dir,
 
@@ -79,10 +113,10 @@ local config = {
       },
       format = {
         enabled = true,
---        settings = {
---          url = vim.fn.stdpath "config" .. "/lang-servers/intellij-java-google-style.xml",
---          profile = "GoogleStyle",
---        },
+       settings = {
+         url = HOME .. "/.config/eclipse-intellij-style.xml",
+         profile = "GoogleStyle",
+       },
       },
     },
     signatureHelp = { enabled = true },
@@ -98,10 +132,10 @@ local config = {
         "org.mockito.Mockito.*",
       },
       importOrder = {
-        "java",
-        "javax",
+        "com",
         "org",
-        "com"
+        "javax",
+        "java",
       },
     },
     contentProvider = { preferred = "fernflower" },
@@ -130,9 +164,9 @@ local config = {
   -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
   --
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
-  -- init_options = {
-  --   bundles = {},
-  -- },
+  init_options = {
+    bundles = bundles,
+  },
 
 }
 -- This starts a new client & server,

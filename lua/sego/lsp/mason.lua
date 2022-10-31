@@ -1,8 +1,9 @@
 local servers = {
 	"sumneko_lua",
 	"jsonls",
-    "volar",
-    "tsserver",
+  "volar",
+  "tsserver",
+  "gopls",
 }
 
 local settings = {

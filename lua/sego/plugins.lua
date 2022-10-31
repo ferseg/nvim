@@ -34,7 +34,6 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/cmp-path' }
   use { "hrsh7th/cmp-nvim-lua" }
   use { "saadparwaiz1/cmp_luasnip" }
-  use { "mfussenegger/nvim-jdtls" }
 
   use { 'L3MON4D3/LuaSnip' }
   use { 'rafamadriz/friendly-snippets' }
@@ -44,6 +43,8 @@ return require('packer').startup(function(use)
   use { 'neovim/nvim-lspconfig' }
   use { "williamboman/mason.nvim" } -- simple to use language server installer
   use { "williamboman/mason-lspconfig.nvim" } -- simple to use language server installer
+  use { "mfussenegger/nvim-jdtls" }
+  use { "mfussenegger/nvim-dap" }
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -88,4 +89,7 @@ return require('packer').startup(function(use)
       require("toggleterm").setup()
     end
   }
+
+  -- Illuminate
+  use { "RRethy/vim-illuminate" }
 end)

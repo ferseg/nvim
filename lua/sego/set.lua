@@ -1,20 +1,20 @@
 vim.opt.guicursor = ""
 
-vim.opt.nu=true
-vim.opt.rnu=true
+vim.opt.nu = true
+vim.opt.rnu = true
 
+vim.opt.colorcolumn = "110"
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 
-vim.opt.shiftwidth=2
-vim.opt.tabstop=2
-vim.opt.smarttab=true
-vim.opt.expandtab=true
-vim.opt.smartindent=true
-
-vim.opt.hlsearch=true
-vim.opt.scrolloff=8
+vim.opt.hlsearch = true
+vim.opt.scrolloff = 8
 
 vim.opt.termguicolors = true
-vim.opt.background='dark'
+vim.opt.background = 'dark'
 vim.cmd('colorscheme nightfly')
 
 vim.opt.cursorline = true

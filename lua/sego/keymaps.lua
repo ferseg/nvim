@@ -22,6 +22,7 @@ vim.g.maplocalleader = " "
 
 -- Save with ctrl+s
 nnoremap('<C-s>', ":w<CR>")
+inoremap('<C-s>', "<ESC> | :w<CR>")
 
 -- Navigate between tabs (TODO)
 nnoremap('<TAB>', ":bnext<CR>")
@@ -34,17 +35,15 @@ nnoremap('<C-S-Down>', ":m +1<CR>")
 vbnoremap('<C-S-Up>', ":m '<-2<CR>gv-gv")
 vbnoremap('<C-S-Down>', ":m '>+1<CR>gv-gv")
 
-
 -- Telescope
 local builtin = require('telescope.builtin')
 nnoremap("<leader>ff", builtin.find_files)
 nnoremap("<leader>fw", builtin.live_grep)
 nnoremap("<leader>fb", builtin.buffers)
 nnoremap("<leader>fh", builtin.help_tags)
-nnoremap("<leader>th", builtin.colorscheme)
+nnoremap("<leader>th", function () builtin.colorscheme({enable_preview = true}) end)
 nnoremap("<leader>tk", builtin.keymaps)
 nnoremap("<leader>gst", builtin.git_status)
-
 
 -- Nvimtree
 nnoremap("<leader>e", ":NvimTreeToggle<CR>")
@@ -53,5 +52,6 @@ inoremap("<C-e>", ":NvimTreeToggle<CR>")
 
 -- Gitsigns
 nnoremap("<leader>gb", ":Gitsigns toggle_current_line_blame<CR>")
+nnoremap("<leader>gdf", ":Gitsigns diffthis<CR>")
 -- local gs = package.loaded.gitsigns
 
