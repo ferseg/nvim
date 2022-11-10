@@ -113,6 +113,7 @@ local config = {
       },
       format = {
         enabled = true,
+        insertSpaces = true,
        settings = {
          url = HOME .. "/.config/eclipse-intellij-style.xml",
          profile = "GoogleStyle",
@@ -130,6 +131,12 @@ local config = {
         "java.util.Objects.requireNonNull",
         "java.util.Objects.requireNonNullElse",
         "org.mockito.Mockito.*",
+      },
+      filteredTypes = {
+        "com",
+        "org",
+        "javax",
+        "java",
       },
       importOrder = {
         "com",

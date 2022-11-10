@@ -1,12 +1,12 @@
 local ok, cmp = pcall(require, "cmp")
 
 if not ok then
-    return
+  return
 end
 
 local snip_ok, luasnip = pcall(require, "luasnip")
 if not snip_ok then
-    return
+  return
 end
 
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -45,6 +45,8 @@ local kind_icons = {
   TypeParameter = "",
 }
 
+vim.opt.completeopt = 'menu,menuone,noselect'
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -53,7 +55,7 @@ cmp.setup {
   },
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
-	["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -110,10 +112,10 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "buffer" },
-    { name = "path" },
+    { name = "nvim_lsp", max_item_count = 15 },
+    { name = "luasnip", max_item_count = 5 },
+    { name = "buffer", max_item_count = 5 },
+    { name = "path", max_item_count = 3 },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
@@ -123,12 +125,13 @@ cmp.setup {
     documentation = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
+    completion = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None',
+    },
   },
   experimental = {
     ghost_text = false,
     native_menu = false,
   },
 }
-
-
-

@@ -4,6 +4,7 @@ local servers = {
   "volar",
   "tsserver",
   "gopls",
+  "terraformls",
 }
 
 local settings = {

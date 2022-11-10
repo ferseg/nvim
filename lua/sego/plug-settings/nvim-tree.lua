@@ -60,6 +60,7 @@ require("nvim-tree").setup({
     group_empty = false,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
+    custom = { "node_modules", },
   },
 })
