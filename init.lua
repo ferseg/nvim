@@ -11,4 +11,4 @@ require("sego.plug-settings.comment")
 require("sego.plug-settings.bufferline")
 require("sego.plug-settings.gitsigns")
 require("sego.plug-settings.toggleterm")
-
+require("sego.plug-settings.blankline")

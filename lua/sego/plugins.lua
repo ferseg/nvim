@@ -23,8 +23,12 @@ return require('packer').startup(function(use)
   -- ===========================================
   -- color theme
   use { 'joshdick/onedark.vim' }
-  use { 'altercation/vim-colors-solarized' }
   use { 'bluz71/vim-nightfly-guicolors' }
+  use { "EdenEast/nightfox.nvim" }
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use { "ellisonleao/gruvbox.nvim" }
+  use { "rafamadriz/neon" }
+  use { 'B4mbus/oxocarbon-lua.nvim' }
 
   -- ===========================================
   -- CMP
@@ -92,4 +96,7 @@ return require('packer').startup(function(use)
 
   -- Illuminate
   use { "RRethy/vim-illuminate" }
+  
+  -- Blankline
+  use { "lukas-reineke/indent-blankline.nvim" }
 end)
