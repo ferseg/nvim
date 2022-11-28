@@ -59,10 +59,12 @@ return require('packer').startup(function(use)
   -- ===========================================
   -- Treesitter (Highlight)
   use { "nvim-treesitter/nvim-treesitter" }
+  use { "p00f/nvim-ts-rainbow" }
 
   -- ===========================================
   -- Telescope
   use { "nvim-telescope/telescope.nvim" }
+  use {'nvim-telescope/telescope-ui-select.nvim' }
 
   -- ===========================================
   -- Nvim Tree
@@ -99,4 +101,7 @@ return require('packer').startup(function(use)
   
   -- Blankline
   use { "lukas-reineke/indent-blankline.nvim" }
+
+  -- Null ls
+  use { "jose-elias-alvarez/null-ls.nvim" }
 end)

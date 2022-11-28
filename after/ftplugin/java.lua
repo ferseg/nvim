@@ -14,7 +14,7 @@ local capabilities = require("sego.lsp.handlers").capabilities
 -- Data directory - change it to your liking
 local HOME = os.getenv "HOME"
 local WORKSPACE_PATH = HOME .. "/workspace/java/"
-local JDTLS_LOCATION = HOME .. "/.local/share/nvim/mason/packages/jdtls"
+local JDTLS_LOCATION = HOME .. "/.local/share/jdtls"
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = WORKSPACE_PATH .. project_name
@@ -61,7 +61,8 @@ local config = {
       "-Dosgi.bundles.defaultStartLevel=4",
       "-Declipse.product=org.eclipse.jdt.ls.core.product",
       "-Dlog.protocol=true",
-      "-Dlog.level=ALL",
+      "-Dlog.level=INFO",
+      "-Xmx1G",
       "-Xms1g",
       "--add-modules=ALL-SYSTEM",
       "--add-opens",
@@ -69,7 +70,7 @@ local config = {
       "--add-opens",
       "java.base/java.lang=ALL-UNNAMED",
       "-javaagent:" .. JDTLS_LOCATION .. "/lombok.jar",
-      "-jar", JDTLS_LOCATION .. "/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
+      "-jar", vim.fn.glob(JDTLS_LOCATION .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
       "-configuration", JDTLS_LOCATION .. "/config_mac",
       "-data", workspace_dir,
   },
@@ -124,19 +125,16 @@ local config = {
     completion = {
       enabled = true,
       favoriteStaticMembers = {
-        "org.hamcrest.MatcherAssert.assertThat",
-        "org.hamcrest.Matchers.*",
-        "org.hamcrest.CoreMatchers.*",
         "org.junit.jupiter.api.Assertions.*",
         "java.util.Objects.requireNonNull",
         "java.util.Objects.requireNonNullElse",
         "org.mockito.Mockito.*",
       },
       filteredTypes = {
-        "com",
-        "org",
-        "javax",
-        "java",
+        -- "com",
+        -- "org",
+        -- "javax",
+        -- "java",
       },
       importOrder = {
         "com",
@@ -144,6 +142,9 @@ local config = {
         "javax",
         "java",
       },
+      guessMethodArguments = {
+        enabled = true,
+      }
     },
     contentProvider = { preferred = "fernflower" },
     sources = {

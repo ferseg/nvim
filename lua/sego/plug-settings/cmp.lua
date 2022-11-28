@@ -112,7 +112,7 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = "nvim_lsp", max_item_count = 15 },
+    { name = "nvim_lsp", },
     { name = "luasnip", max_item_count = 5 },
     { name = "buffer", max_item_count = 5 },
     { name = "path", max_item_count = 3 },
@@ -128,8 +128,10 @@ cmp.setup {
     completion = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
       winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None',
+      scrollbar = true,
     },
   },
+  keyword_length = 3,
   experimental = {
     ghost_text = false,
     native_menu = false,

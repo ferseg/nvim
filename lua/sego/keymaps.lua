@@ -36,7 +36,7 @@ nnoremap('<C-S-Up>', ":m -2<CR>")
 nnoremap('<C-S-Down>', ":m +1<CR>")
 vbnoremap('<C-S-Up>', ":m '<-2<CR>gv-gv")
 vbnoremap('<C-S-Down>', ":m '>+1<CR>gv-gv")
-nnoremap('<Up>', "NOP")
+nnoremap('<Up>', "<NOP>")
 nnoremap('<Down>', "<NOP>")
 nnoremap('<Left>', "<NOP>")
 nnoremap('<Right>', "<NOP>")
@@ -58,9 +58,12 @@ nnoremap("<leader>tbr", builtin.git_branches)
 
 -- Telescope lsp
 nnoremap("gr", builtin.lsp_references)
+nnoremap("<leader>tim", builtin.lsp_implementations)
+-- nnoremap("<leader>ca", builtin.lsp_code_actions)
 
 -- Nvimtree
 nnoremap("<leader>e", ":NvimTreeToggle<CR>")
+nnoremap("<leader>fe", ":NvimTreeFocus<CR>")
 inoremap("<C-e>", ":NvimTreeToggle<CR>")
 
 

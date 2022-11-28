@@ -15,7 +15,7 @@ vim.opt.scrolloff = 8
 
 vim.opt.termguicolors = true
 vim.opt.background = "light"
-vim.cmd('colorscheme catppuccin-latte')
+vim.cmd('colorscheme catppuccin-frappe')
 
 vim.opt.cursorline = true
 
