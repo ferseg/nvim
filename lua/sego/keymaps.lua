@@ -72,12 +72,14 @@ nnoremap("<leader>gb", ":Gitsigns toggle_current_line_blame<CR>")
 nnoremap("<leader>gdf", ":Gitsigns diffthis<CR>")
 -- local gs = package.loaded.gitsigns
 
-
-
 -- DAP debug
 nnoremap("<leader>dtc", ":lua require('jdtls').test_class()<CR>")
 nnoremap("<leader>dtm", ":lua require('jdtls').test_nearest_method()<CR>")
 
+-- LspSaga
+nnoremap("<leader>rn", ":Lspsaga rename<CR>")
+nnoremap("<leader>ca", ":Lspsaga code_action<CR>")
+vnoremap("<leader>ca", ":Lspsaga code_action<CR>")
 
 --[[ local keymap = {
     d = {

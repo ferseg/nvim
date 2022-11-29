@@ -55,10 +55,12 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
+  use { "glepnir/lspsaga.nvim" }
 
   -- ===========================================
   -- Treesitter (Highlight)
   use { "nvim-treesitter/nvim-treesitter" }
+  use { "nvim-treesitter/nvim-treesitter-textobjects" }
   use { "p00f/nvim-ts-rainbow" }
 
   -- ===========================================
@@ -87,18 +89,12 @@ return require('packer').startup(function(use)
 
   -- Bufferline
   use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'kyazdani42/nvim-web-devicons'}
-  
   -- Gitsigns
   use { "lewis6991/gitsigns.nvim" }
 
-  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-      require("toggleterm").setup()
-    end
-  }
-
   -- Illuminate
   use { "RRethy/vim-illuminate" }
-  
+
   -- Blankline
   use { "lukas-reineke/indent-blankline.nvim" }
 
