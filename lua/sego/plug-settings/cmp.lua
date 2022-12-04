@@ -9,7 +9,6 @@ if not snip_ok then
   return
 end
 
-require("luasnip.loaders.from_vscode").lazy_load()
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -46,7 +45,7 @@ local kind_icons = {
 }
 
 vim.opt.completeopt = 'menu,menuone,noselect'
-
+local compare = require "cmp.config.compare"
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -136,4 +135,19 @@ cmp.setup {
     ghost_text = false,
     native_menu = false,
   },
+  sorting = {
+    -- priority_weight = 2,
+    comparators = {
+      compare.offset,
+      compare.exact,
+      compare.score,
+      compare.recently_used,
+      compare.locality,
+      compare.sort_text,
+      compare.length,
+      compare.order,
+    },
+  },
 }
+
+require("luasnip.loaders.from_vscode").lazy_load()

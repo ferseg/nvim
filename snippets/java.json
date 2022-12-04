@@ -1,0 +1,7 @@
+{
+  "jtmsss": {
+    "prefix": "jtmsss",
+    "body": "@Test\nvoid test${1:name}() {\n\t${$0}\n}",
+    "description": "JUnit Test Method"
+  }
+}

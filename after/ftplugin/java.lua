@@ -19,7 +19,7 @@ local JDTLS_LOCATION = HOME .. "/.local/share/jdtls"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = WORKSPACE_PATH .. project_name
 
-local root_markers = { ".git", "mvnw", "gradlew",}
+local root_markers = { ".git", "mvnw", "gradlew", }
 local root_dir = require("jdtls.setup").find_root(root_markers)
 if root_dir == "" then
   return
@@ -33,16 +33,15 @@ if DEBUG_ENABLED then
   vim.list_extend(bundles,
     vim.split(
       vim.fn.glob(
-        HOME .. "/java-dap/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+        HOME .. "/java-dap/vscode-java-test/server/*.jar"
       ),
       "\n"
     )
   )
-
   vim.list_extend(bundles,
     vim.split(
       vim.fn.glob(
-        HOME .. "/java-dap/vscode-java-test/server/*.jar"
+        HOME .. "/java-dap/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
       ),
       "\n"
     )
@@ -56,27 +55,25 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 local config = {
   cmd = {
-      "/Library/Java/JavaVirtualMachines/jdk-17.0.4.1.jdk/Contents/Home/bin/java",
-      "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-      "-Dosgi.bundles.defaultStartLevel=4",
-      "-Declipse.product=org.eclipse.jdt.ls.core.product",
-      "-Dlog.protocol=true",
-      "-Dlog.level=INFO",
-      "-Xmx1G",
-      "-Xms1g",
-      "--add-modules=ALL-SYSTEM",
-      "--add-opens",
-      "java.base/java.util=ALL-UNNAMED",
-      "--add-opens",
-      "java.base/java.lang=ALL-UNNAMED",
-      "-javaagent:" .. JDTLS_LOCATION .. "/lombok.jar",
-      "-jar", vim.fn.glob(JDTLS_LOCATION .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
-      "-configuration", JDTLS_LOCATION .. "/config_mac",
-      "-data", workspace_dir,
+    "/Library/Java/JavaVirtualMachines/jdk-17.0.4.1.jdk/Contents/Home/bin/java",
+    "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+    "-Dosgi.bundles.defaultStartLevel=4",
+    "-Declipse.product=org.eclipse.jdt.ls.core.product",
+    "-Dlog.protocol=true",
+    "-Dlog.level=INFO",
+    "-Xmx1G",
+    "-Xms500m",
+    "--add-modules=ALL-SYSTEM",
+    "--add-opens", "java.base/java.util=ALL-UNNAMED",
+    "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+    "-javaagent:" .. JDTLS_LOCATION .. "/lombok.jar",
+    "-jar", vim.fn.glob(JDTLS_LOCATION .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+    "-configuration", JDTLS_LOCATION .. "/config_mac",
+    "-data", workspace_dir,
   },
-  autostart=true,
-  filetypes={"java"},
-  on_attach = function (client, bufnr)
+  autostart = true,
+  filetypes = { "java" },
+  on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     if DEBUG_ENABLED then
       jdtls.setup_dap({ hotcodereplace = 'auto' })
@@ -87,12 +84,13 @@ local config = {
   capabilities = capabilities,
   root_dir = root_dir,
 
-    -- Here you can configure eclipse.jdt.ls specific settings
-    -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-    -- for a list of options
+  -- Here you can configure eclipse.jdt.ls specific settings
+  -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+  -- for a list of options
   settings = {
     extendedClientCapabilities = extendedClientCapabilities,
     java = {
+      autobuild = true,
       eclipse = {
         downloadSources = true,
       },
@@ -115,49 +113,55 @@ local config = {
       format = {
         enabled = true,
         insertSpaces = true,
-       settings = {
-         url = HOME .. "/.config/eclipse-intellij-style.xml",
-         profile = "GoogleStyle",
-       },
+        settings = {
+          url = HOME .. "/.config/eclipse-intellij-style.xml",
+          profile = "GoogleStyle",
+        },
       },
-    },
-    signatureHelp = { enabled = true },
-    completion = {
-      enabled = true,
-      favoriteStaticMembers = {
-        "org.junit.jupiter.api.Assertions.*",
-        "java.util.Objects.requireNonNull",
-        "java.util.Objects.requireNonNullElse",
-        "org.mockito.Mockito.*",
-      },
-      filteredTypes = {
-        -- "com",
-        -- "org",
-        -- "javax",
-        -- "java",
-      },
-      importOrder = {
-        "com",
-        "org",
-        "javax",
-        "java",
-      },
-      guessMethodArguments = {
+      signatureHelp = { enabled = true },
+      completion = {
         enabled = true,
-      }
-    },
-    contentProvider = { preferred = "fernflower" },
-    sources = {
-      organizeImports = {
-        starThreshold = 3,
-        staticStarThreshold = 9999,
+        favoriteStaticMembers = {
+          "org.junit.jupiter.api.Assertions.*",
+          "java.util.Objects.requireNonNull",
+          "java.util.Objects.requireNonNullElse",
+          "org.mockito.Mockito.*",
+        },
+        filteredTypes = {
+          "com",
+          "org",
+          "javax",
+          "java",
+        },
+        importOrder = {
+          "com",
+          "org",
+          "javax",
+          "java",
+        },
+        guessMethodArguments = true
       },
-    },
-    codeGeneration = {
-      toString = {
-        template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+      contentProvider = { preferred = "fernflower" },
+      sources = {
+        organizeImports = {
+          starThreshold = 3,
+          staticStarThreshold = 9999,
+        },
       },
-      useBlocks = true,
+      codeGeneration = {
+        toString = {
+          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+        },
+        useBlocks = true,
+      },
+      import = {
+        maven = {
+          enabled = true,
+        },
+        gradle = {
+          enabled = true,
+        }
+      },
     },
   },
 

@@ -81,6 +81,7 @@ nnoremap("<leader>rn", ":Lspsaga rename<CR>")
 nnoremap("<leader>ca", ":Lspsaga code_action<CR>")
 vnoremap("<leader>ca", ":Lspsaga code_action<CR>")
 
+nnoremap("<leader><leader>s", ":source ~/.config/nvim/lua/sego/plug-settings/luasnip.lua<CR>")
 --[[ local keymap = {
     d = {
       name = "Debug",

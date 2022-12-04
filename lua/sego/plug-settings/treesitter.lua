@@ -92,11 +92,4 @@ require 'nvim-treesitter.configs'.setup {
       include_surrounding_whitespace = true,
     },
   },
-  textsubjects = {
-    enable = true,
-    keymaps = {
-      ['.'] = 'textsubjects-smart',
-      [';'] = 'textsubjects-container-outer',
-    }
-  }
 }
