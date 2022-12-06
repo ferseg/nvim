@@ -114,7 +114,7 @@ local config = {
         enabled = true,
         insertSpaces = true,
         settings = {
-          url = HOME .. "/.config/eclipse-intellij-style.xml",
+          url = HOME .. "/.config/eclipse-java-google-style.xml",
           profile = "GoogleStyle",
         },
       },
