@@ -4,9 +4,9 @@ if not jdtls_ok then
   return
 end
 
-vim.opt_local.tabstop = 4
-vim.opt_local.shiftwidth = 4
-vim.opt_local.softtabstop = 4
+-- vim.opt_local.tabstop = 4
+-- vim.opt_local.shiftwidth = 4
+-- vim.opt_local.softtabstop = 4
 
 local on_attach = require("sego.lsp.handlers").on_attach
 local capabilities = require("sego.lsp.handlers").capabilities
@@ -144,7 +144,7 @@ local config = {
       contentProvider = { preferred = "fernflower" },
       sources = {
         organizeImports = {
-          starThreshold = 3,
+          starThreshold = 5,
           staticStarThreshold = 9999,
         },
       },
