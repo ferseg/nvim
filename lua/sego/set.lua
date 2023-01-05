@@ -1,4 +1,4 @@
-vim.opt.guicursor = ""
+-- vim.opt.guicursor = ""
 
 vim.opt.nu = true
 vim.opt.rnu = true
@@ -14,8 +14,8 @@ vim.opt.hlsearch = false
 vim.opt.scrolloff = 8
 
 vim.opt.termguicolors = true
-vim.opt.background = "light"
-vim.cmd('colorscheme catppuccin-frappe')
+vim.opt.background = "dark"
+vim.cmd('colorscheme duskfox')
 
 vim.opt.cursorline = true
 

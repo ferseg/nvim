@@ -59,6 +59,8 @@ nnoremap("<leader>tbr", builtin.git_branches)
 -- Telescope lsp
 nnoremap("gr", builtin.lsp_references)
 nnoremap("<leader>tim", builtin.lsp_implementations)
+nnoremap("<leader>tll", ":Telescope loclist<CR>")
+
 -- nnoremap("<leader>ca", builtin.lsp_code_actions)
 
 -- Nvimtree

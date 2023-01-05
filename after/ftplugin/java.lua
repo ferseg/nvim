@@ -4,9 +4,9 @@ if not jdtls_ok then
   return
 end
 
--- vim.opt_local.tabstop = 4
--- vim.opt_local.shiftwidth = 4
--- vim.opt_local.softtabstop = 4
+vim.opt_local.tabstop = 4
+vim.opt_local.shiftwidth = 4
+vim.opt_local.softtabstop = 4
 
 local on_attach = require("sego.lsp.handlers").on_attach
 local capabilities = require("sego.lsp.handlers").capabilities
@@ -14,7 +14,7 @@ local capabilities = require("sego.lsp.handlers").capabilities
 -- Data directory - change it to your liking
 local HOME = os.getenv "HOME"
 local WORKSPACE_PATH = HOME .. "/workspace/java/"
-local JDTLS_LOCATION = HOME .. "/.local/share/jdtls"
+local JDTLS_LOCATION = HOME .. "/.local/share/nvim/mason/packages/jdtls"
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = WORKSPACE_PATH .. project_name
@@ -55,7 +55,8 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 local config = {
   cmd = {
-    "/Library/Java/JavaVirtualMachines/jdk-17.0.4.1.jdk/Contents/Home/bin/java",
+    -- "/Library/Java/JavaVirtualMachines/jdk-17.0.4.1.jdk/Contents/Home/bin/java",
+    HOME .. "/.sdkman/candidates/java/current/bin/java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -114,8 +115,8 @@ local config = {
         enabled = true,
         insertSpaces = true,
         settings = {
-          url = HOME .. "/.config/eclipse-java-google-style.xml",
-          profile = "GoogleStyle",
+          url = HOME .. "/.local/share/intellij-format.xml", -- eclipse-java-google-style.xml",
+          profile = "CodeFormatterProfile",
         },
       },
       signatureHelp = { enabled = true },
@@ -144,7 +145,7 @@ local config = {
       contentProvider = { preferred = "fernflower" },
       sources = {
         organizeImports = {
-          starThreshold = 5,
+          starThreshold = 10,
           staticStarThreshold = 9999,
         },
       },

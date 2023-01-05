@@ -63,4 +63,12 @@ require("nvim-tree").setup({
     dotfiles = false,
     custom = { "node_modules", },
   },
+  update_focused_file = {
+    enable = true,
+  },
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    }
+  },
 })
